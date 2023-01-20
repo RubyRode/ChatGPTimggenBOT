@@ -4,9 +4,9 @@ import flask
 import openai
 from dotenv import load_dotenv
 
-openai.organization = "org-ykNr61GSEWYVGwTFEhnQ7G3i"
-OPENAI_BOT_TOKEN = "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"
-DISCORD_BOT_TOKEN = "MTA2MzM3MjQxODI1NDY1NTUxOA.GMV3db.3X05XhaJyw4MlL9KpvceBX0oOCOGzq0nS5fk-E"
+openai.organization = "TOKEN"
+OPENAI_BOT_TOKEN = "TOKEN"
+DISCORD_BOT_TOKEN = "TOKEN"
 openai.api_key = OPENAI_BOT_TOKEN
 
 # response = openai.Image.create(
