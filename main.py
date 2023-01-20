@@ -1,13 +1,13 @@
 import os
 import discord
+from tokens import TOKENS
 import flask
 import openai
 from dotenv import load_dotenv
 
-openai.organization = "TOKEN"
-OPENAI_BOT_TOKEN = "TOKEN"
-DISCORD_BOT_TOKEN = "TOKEN"
-openai.api_key = OPENAI_BOT_TOKEN
+openai.organization = TOKENS.openai_org_token
+openai.api_key = TOKENS.openai_bot_token
+DISCORD_BOT_TOKEN = TOKENS.discord_bot_token
 
 # response = openai.Image.create(
 #   prompt="A cute baby sea otter",
@@ -37,7 +37,8 @@ async def on_message(message):
     if message.content.startswith("!txt_comp"):
         try:
             prompt = message.content[10:]  # Get the text after !complete_text
-            completions = openai.Completion.create(engine="text-davinci-002", prompt=prompt, max_tokens=2048, n=1,stop=None)
+            completions = openai.Completion.create(engine="text-davinci-002", prompt=prompt, max_tokens=2048, n=1,
+                                                   stop=None)
             text = completions.choices[0].text
             await message.reply(text)
         except openai.OpenAIError as e:
@@ -54,7 +55,8 @@ async def on_message(message):
 
     if message.content.startswith("!help_gpt") and message.author != client.user:
         try:
-            await message.reply("!help_gpt - show this message\n!img_gen - generate an image 1024x1024 from prompt\n!txt_comp - generate a text from request.")
+            await message.reply("!help_gpt - show this message\n!img_gen - generate an image 1024x1024 from "
+                                "prompt\n!txt_comp - generate a text from request.")
         except openai.OpenAIError as e:
             await message.channel.send("Error: " + str(e))
 
